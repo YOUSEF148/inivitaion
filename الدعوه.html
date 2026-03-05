@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | Orbis Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* إعادة تعيين أنماط المتصفح الأساسية */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            /* استخدام خطوط Google */
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #004d40 0%, #00695c 100%); /* تدرج أخضر زمردي عميق من الشعار */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+            direction: rtl; /* اتجاه النص من اليمين لليسار */
+            padding: 20px;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-card {
+            background: #fff;
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3); /* ظل أعمق لعمق أكبر */
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards; /* تأثير تلاشي خفيف عند التحميل */
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px); }
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 250px;
+            height: auto;
+            display: block;
+        }
+
+        .card-header h2 {
+            font-family: 'Amiri', serif; /* خط سيريف متميز للعناوين الرئيسية */
+            color: #004d40; /* نفس لون الشعار الأساسي */
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            right: 15px; /* أيقونة على اليمين للغة العربية */
+            transform: translateY(-50%);
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px 45px 15px 15px; /* زيادة الهامش الأيمن للأيقونة */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            color: #333;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); /* ظل داخلي ناعم */
+        }
+
+        .input-field:focus {
+            border-color: #00695c;
+            box-shadow: 0 0 10px rgba(0,105,92,0.2);
+        }
+
+        .input-field:focus + i {
+            color: #00695c;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #004d40; /* اللون الأساسي من الشعار */
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,77,64,0.4);
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .login-button:hover {
+            background: #002e26;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,77,64,0.5);
+        }
+
+        .login-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 10px rgba(0,77,64,0.4);
+        }
+
+        .forgot-password, .create-account {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: #666;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover, .create-account:hover {
+            color: #00695c;
+        }
+
+        .footer-links {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* تنسيق متجاوب (Responsive) للموبايل */
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 3rem 2rem;
+            }
+            .card-header h2 {
+                font-size: 2rem;
+            }
+            .logo {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="logo-container">
+            <img src="orbis-logo.png" alt="Orbis Development Logo" class="logo">
+        </div>
+        <div class="card-header">
+            <h2>تسجيل الدخول</h2>
+        </div>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" placeholder="اسم المستخدم" class="input-field" required>
+                <i class="fas fa-user"></i>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" placeholder="كلمة المرور" class="input-field" required>
+                <i class="fas fa-lock"></i>
+            </div>
+            
+            <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
+            
+            <button type="submit" class="login-button">دخول</button>
+        </form>
+        
+        <div class="footer-links">
+            <a href="#" class="create-account">ليس لديك حساب؟ إنشاء حساب جديد</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // كود بسيط لعرض إشعار عند محاولة تسجيل الدخول (لأنه منظر فقط)
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // منع النموذج من الإرسال الحقيقي
+        
+        // جلب القيم المُدخلة (اختياري، للعرض فقط)
+        const username = event.target.querySelector('input[type="text"]').value;
+        const password = event.target.querySelector('input[type="password"]').value;
+        
+        // إشعار وهمي
+        if (username && password) {
+            alert(`تم تسجيل البيانات بنجاح: \nاسم المستخدم: ${username} \nكلمة المرور: (تم إخفاؤها لأسباب أمنية)\n\nهذا مجرد نموذج "منظر" فقط. لن يتم حفظ البيانات.`);
+        } else {
+            alert('يرجى ملء جميع الحقول.');
+        }
+    });
+</script>
+
+</body>
+</html>
